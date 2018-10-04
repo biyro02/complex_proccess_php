@@ -6,9 +6,12 @@
  * Time: 09:44
  */
 
+# Bu sayfada ve bu sayfanın include edildiği tüm sayfalarda geçerli olacak sabitler.
+const DIGIT=3;
+const ITEM_SIZE = 10;
 # $digit isimli değişken, şayet formdaki digit isimli inputa değer girilmişse onu alır, girilmemişse 3 verir.
-$digit = isset($_POST['digit']) ? $_POST['digit'] : 3;
-$itemSize = isset($_POST['itemSize']) ? $_POST['itemSize'] : 10;
+$digit = (!isset($_POST['digit']) || $_POST['digit']<2) ? DIGIT : $_POST['digit'];
+$itemSize = (!isset($_POST['itemSize']) || $_POST['itemSize']<2) ? ITEM_SIZE : $_POST['itemSize'];
 $numbers = [];
 
 /**
@@ -37,7 +40,7 @@ function calculateDigits($digit=1)
  * @param int $digit
  * @return int
  */
-function randValue($digit=1)
+function randValue($digit)
 {
     # basamak aralığını yaratır
   $range = calculateDigits($digit);                 
@@ -80,7 +83,7 @@ function calculateSpecial($number=1)
  * @param $numbers
  * @return mixed
  */
-function main($item=1, $digit=1, &$numbers)                             // burada main() fonksiyonunu tanımlarken son parametreyi &$number diye tanımlamışım. Fark edilirse parametreyi tanımlarken başına & işareti koyuldu. Bu durum fonksiyon içindeki yapılan işlemlerden sonra ortaya çıkan ve döndürmek istediğim bir verinin dışarıya dönülmesi demektir. Yani eskiden biz function calculate($deger){ return $deger*2;} şeklinde tanımladığımız bir fonksiyonu çağırırken $hesapla = calculate(2); şeklinde kullanıyorduk. O kullanım çoğunlukla geçerli olmakla beraber bu kullanımda ise calculate(&$hesapla); şeklinde çağırabilir ve $hesapla değikenine calculate() fonksiyonunun sonucunu atayabilriz. Bu karmaşık gelebilir. Ayrıntılar için: http://php.net/manual/en/language.references.php
+function main(&$numbers, $item=ITEM_SIZE, $digit=DIGIT)                             // burada main() fonksiyonunu tanımlarken son parametreyi &$number diye tanımlamışım. Fark edilirse parametreyi tanımlarken başına & işareti koyuldu. Bu durum fonksiyon içindeki yapılan işlemlerden sonra ortaya çıkan ve döndürmek istediğim bir verinin dışarıya dönülmesi demektir. Yani eskiden biz function calculate($deger){ return $deger*2;} şeklinde tanımladığımız bir fonksiyonu çağırırken $hesapla = calculate(2); şeklinde kullanıyorduk. O kullanım çoğunlukla geçerli olmakla beraber bu kullanımda ise calculate(&$hesapla); şeklinde çağırabilir ve $hesapla değikenine calculate() fonksiyonunun sonucunu atayabilriz. Bu karmaşık gelebilir. Ayrıntılar için: http://php.net/manual/en/language.references.php
 {
     # istenen basamaklı ve istenen kadar sayıdaki sayıyı yaratıp hesaplayıp dönüyoruz. Bunu da iki fonksiyonu peşpeşe yazarak ve aynı array içine atarak for döngüsüyle yapıyoruz.
     for($i=0;$i<$item;$i++)
