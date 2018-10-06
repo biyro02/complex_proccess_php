@@ -16,7 +16,7 @@
 function pushScreen($numbers = [])
 {
     # Eğer fonksiyonun aldığı parametre sayılabilirse(diziyse ve birden fazla elemanı varsa), bu işlemi yap
-    if (is_iterable($numbers)) {                                        // is_iterable fonksiyonu php'nin kendi fonksiyonudur ve aldığı parametreyi sayılabilir mi diye kontrol eder. Sadece iki cevabı vardır: true ya da false. Sayılabilirse true döner, sayılamazsa false döner. Ayrıntılar için: http://php.net/manual/tr/function.is-iterable.php
+    if (is_array($numbers)) {                                        // is_iterable fonksiyonu php'nin kendi fonksiyonudur ve aldığı parametreyi sayılabilir mi diye kontrol eder. Sadece iki cevabı vardır: true ya da false. Sayılabilirse true döner, sayılamazsa false döner. Ayrıntılar için: http://php.net/manual/tr/function.is-iterable.php
         echo '<pre style="font-size: 12px; font-family: monospace;">'   // <pre> etiketi kodların ya da debug modundayken istediğimiz sonuçların madde madde ve altalta düzgün bir şekilde görüntülenmesini sağlar. Ayrıntılar için: https://www.w3schools.com/tags/tag_pre.asp
             ."\n"
             .trim(                                                      //bu fonksiyon, değerin başında veya sonunda boşluk varsa temizler. Ayrıntılar için http://php.net/manual/tr/function.trim.php
