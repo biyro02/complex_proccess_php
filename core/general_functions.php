@@ -15,8 +15,8 @@
  */
 function pushScreen($numbers = [])
 {
-    # Eğer fonksiyonun aldığı parametre sayılabilirse(diziyse ve birden fazla elemanı varsa), bu işlemi yap
-    if (is_array($numbers)) {                                        // is_iterable fonksiyonu php'nin kendi fonksiyonudur ve aldığı parametreyi sayılabilir mi diye kontrol eder. Sadece iki cevabı vardır: true ya da false. Sayılabilirse true döner, sayılamazsa false döner. Ayrıntılar için: http://php.net/manual/tr/function.is-iterable.php
+    # Eğer fonksiyonun aldığı parametre diziyse bu işlemi yap
+    if (is_array($numbers)) {                                        // is_array fonksiyonu php'nin kendi fonksiyonudur ve aldığı parametre dizi olup olmadığını kontrol eder. Sadece iki cevabı vardır: true ya da false. Parametre diziyse true döner, değilse false döner. Ayrıntılar için: http://php.net/manual/tr/function.is-array.php
         echo '<pre style="font-size: 12px; font-family: monospace;">'   // <pre> etiketi kodların ya da debug modundayken istediğimiz sonuçların madde madde ve altalta düzgün bir şekilde görüntülenmesini sağlar. Ayrıntılar için: https://www.w3schools.com/tags/tag_pre.asp
             ."\n"
             .trim(                                                      //bu fonksiyon, değerin başında veya sonunda boşluk varsa temizler. Ayrıntılar için http://php.net/manual/tr/function.trim.php
@@ -25,7 +25,7 @@ function pushScreen($numbers = [])
                 )
             );
     }
-    # sayılabilir bir parametre değilse(string, int, float gibi tek boyutlu bir değer ya da null ise), burayı çalıştır.
+    # array bir parametre değilse(string, int, float gibi tek boyutlu bir değer ya da null ise), burayı çalıştır.
     else {
         echo "\n<div style='font-size: 12px; font-family: monospace;'>";
         var_dump($numbers);
